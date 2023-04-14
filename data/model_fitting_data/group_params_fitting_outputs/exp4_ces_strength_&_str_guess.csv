@@ -1,0 +1,2 @@
+pid,experiment,num_trials,model_name,nLL,bic,params,params_labels,success,message,time
+,experiment_4,,ces_strength,7.992243126431588,30.29654012626017,[ 0.64556064 48.19343202  0.45359366],"[['ce_threshold', 0], ['time_threshold', 1], ['guess', 2]]",True,Optimization terminated successfully.,52.291011436666665
