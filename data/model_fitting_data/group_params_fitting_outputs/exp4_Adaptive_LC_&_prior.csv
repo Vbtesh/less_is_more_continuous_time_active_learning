@@ -1,0 +1,2 @@
+pid,experiment,num_trials,model_name,nLL,bic,params,params_labels,success,message,time
+,experiment_4,,Adaptive_LC,7.97128713745404,25.48394352383941,[  1.54616292 490.46276113],"[['smoothing', 0], ['prior_param', 1]]",True,Optimization terminated successfully.,158.93123162499978
