@@ -1,2 +1,0 @@
-pid,experiment,num_trials,model_name,nLL,bic,params,params_labels,success,message,time
-,experiment_1,,LC_discrete_att_total,7.211958941985113,22.61260700841443,[2.57278917 0.00493422],"[['smoothing', 0], ['decay_rate', 1]]",True,Optimization terminated successfully.,100.46813122666667

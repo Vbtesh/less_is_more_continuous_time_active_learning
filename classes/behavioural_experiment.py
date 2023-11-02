@@ -274,7 +274,7 @@ class Behavioural_experiment():
             if self.inter_report.empty:
                 self.inter_report = part.intervention_report
             else:
-                self.inter_report = self.inter_report.append(part.intervention_report, ignore_index=True)
+                self.inter_report = pd.concat([self.inter_report, part.intervention_report], ignore_index=True)
 
 
         dfSign_arr = self.signChange.to_numpy()

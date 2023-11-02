@@ -91,7 +91,7 @@ mod
 em1 = emmeans::emmeans(mod, 'trial_type', 'lc_prior_bf')
 em1
 pairs(em1)
-afex_plot(mod, 'lc_prior_bf', 'trial_type')
+afex_plot(mod, 'trial_type', 'lc_prior_bf')
 
 # Experiment 4 indirect links
 mod = afex::mixed(num_indirect_errors ~ lc_prior_bf*trial_type + num_indirect_links + (1| pid), data=trials_4, method='S')
@@ -99,4 +99,4 @@ mod
 em1 = emmeans::emmeans(mod, 'trial_type', 'lc_prior_bf')
 em1
 pairs(em1)
-afex_plot(mod, 'lc_prior_bf', 'trial_type')
+afex_plot(mod, 'trial_type', 'lc_prior_bf')

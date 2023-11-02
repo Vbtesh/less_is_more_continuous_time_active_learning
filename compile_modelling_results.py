@@ -92,7 +92,7 @@ for experiment in experiments:
 
     for i, part in enumerate(parts):
         # Prior bf
-        part_prior_bf = df_prior[df_prior.pid == part].best_lc.to_list()[0]
+        part_prior_bf = df_prior[df_prior.pid == part].best_prior.to_list()[0]
         df_trials.loc[df_trials.pid == part, 'lc_prior_bf'] = 1 if part_prior_bf == 1 else 0
 
         part_data = df_final.loc[df_final.participant == part]
@@ -107,6 +107,8 @@ for experiment in experiments:
         if experiment == 3 or experiment == 4:
 
             norm_score = norm_data.accuracy.to_list()
+            if len(norm_score) > 2:
+                norm_score = norm_score[:2]
             s = df_final.loc[df_final.participant == part]
             df_final.loc[df_final.participant == part, 'normative_score'] = norm_score
 
@@ -141,7 +143,7 @@ for experiment in experiments:
     df_exp = df_participants[df_participants.experiment == f'experiment_{experiment}']
 
     df_final['lc_prior_bf'] = 0
-    df_final.loc[df_long.participant.isin(df_exp[df_exp.best_lc == 1].pid), 'lc_prior_bf'] = 1
+    df_final.loc[df_long.participant.isin(df_exp[df_exp.best_prior == 1].pid), 'lc_prior_bf'] = 1
 
 
     df_final.to_csv(f'./data/accuracy_lf_exp{experiment}_wprior.csv', index=False)

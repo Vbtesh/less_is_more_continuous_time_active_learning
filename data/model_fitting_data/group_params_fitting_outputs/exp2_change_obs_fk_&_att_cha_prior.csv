@@ -1,2 +1,0 @@
-pid,experiment,num_trials,model_name,nLL,bic,params,params_labels,success,message,time
-,experiment_2,,change_obs_fk,8.304607919978018,35.792378022343,[  1.53499928   0.40526799   0.31496091 309.01704409],"[['smoothing', 0], ['decay_rate', 1], ['prior_param', 3], ['change_memory', 2]]",True,Optimization terminated successfully.,110.55211793000005
