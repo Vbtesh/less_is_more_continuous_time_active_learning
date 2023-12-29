@@ -35,7 +35,7 @@ data_3$difficulty = as.factor(data_3$difficulty)
 data_3$lc_prior_bf = as.factor(data_3$lc_prior_bf)
 
 # initial analysis: Model without prior shape
-mod = afex::mixed(accuracy ~ difficulty*scenario + lc_score + (1| participant), data=data_3, method='S')
+mod = afex::mixed(accuracy ~ difficulty*scenario + (1| participant), data=data_3, method='S')
 mod
 em1 = emmeans::emmeans(mod, 'difficulty')
 em1
@@ -75,28 +75,4 @@ em1
 pairs(em1)
 afex_plot(mod, "difficulty", 'lc_prior_bf')
 
-# Analysis of indirect link errors in labeled trials for experiment 3 and 4
-df_trials = read.csv('./data/df_trials_wprior.csv')
-df_trials$lc_prior_bf = as.factor(df_trials$lc_prior_bf)
-df_trials$trial_type = as.factor(df_trials$trial_type)
 
-df_trials_labelled = df_trials %>% filter(trial_name=='crime' | trial_name=='finance')
-
-trials_3 = df_trials_labelled[df_trials_labelled$experiment == 'experiment_3', ]
-trials_4 = df_trials_labelled[df_trials_labelled$experiment == 'experiment_4', ]
-
-# Experiment 3 indirect links
-mod = afex::mixed(num_indirect_errors ~ lc_prior_bf*trial_type + num_indirect_links + (1| pid), data=trials_3, method='S')
-mod
-em1 = emmeans::emmeans(mod, 'trial_type', 'lc_prior_bf')
-em1
-pairs(em1)
-afex_plot(mod, 'lc_prior_bf', 'trial_type')
-
-# Experiment 4 indirect links
-mod = afex::mixed(num_indirect_errors ~ lc_prior_bf*trial_type + num_indirect_links + (1| pid), data=trials_4, method='S')
-mod
-em1 = emmeans::emmeans(mod, 'trial_type', 'lc_prior_bf')
-em1
-pairs(em1)
-afex_plot(mod, 'lc_prior_bf', 'trial_type')

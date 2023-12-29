@@ -35,7 +35,7 @@ data_3$difficulty = as.factor(data_3$difficulty)
 data_3$lc_prior_bf = as.factor(data_3$lc_prior_bf)
 
 # initial analysis: Model without prior shape
-mod = afex::mixed(accuracy ~ difficulty*scenario + lc_score + (1| participant), data=data_3, method='S')
+mod = afex::mixed(accuracy ~ difficulty*scenario + (1| participant), data=data_3, method='S')
 mod
 em1 = emmeans::emmeans(mod, 'difficulty')
 em1
@@ -43,12 +43,15 @@ pairs(em1)
 afex_plot(mod, "difficulty")
 
 # Secondary analysis model with prior shape
-mod = afex::mixed(accuracy ~ difficulty*scenario*lc_prior_bf + lc_score + (1| participant), data=data_3, method='S')
+mod = afex::mixed(accuracy ~ difficulty*scenario*lc_prior_bf + (1| participant), data=data_3, method='S')
 mod
 em1 = emmeans::emmeans(mod, 'difficulty', 'lc_prior_bf')
 em1
 pairs(em1)
-afex_plot(mod, "difficulty", 'lc_prior_bf')
+em1 = emmeans::emmeans(mod, 'scenario', 'lc_prior_bf')
+em1
+pairs(em1)
+afex_plot(mod, 'scenario', 'lc_prior_bf')
 
 
 
@@ -68,6 +71,7 @@ pairs(em1)
 afex_plot(mod, "difficulty")
 
 # Secondary analysis model with prior shape
+
 mod = afex::mixed(accuracy ~ difficulty*scenario*lc_prior_bf + lc_score + (1| participant), data=data_4, method='S')
 mod
 em1 = emmeans::emmeans(mod, 'difficulty', 'lc_prior_bf')
