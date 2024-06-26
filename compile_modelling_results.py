@@ -48,7 +48,12 @@ cases = {
 print('\n Adding modelling results to core dataframes...')
 final_columns = ['participant', 'scenario', 'difficulty', 'accuracy', 'actions']
 
-df_prior = pd.read_csv('./data/prior_fitting_data.csv')
+df_prior_bic = pd.read_csv('./data/prior_fitting_data.csv')
+df_prior_aic = pd.read_csv('./data/prior_fitting_data_aic.csv')
+df_prior_aic = df_prior_aic.rename({'final':'final_aic', 'best_prior':'best_prior_aic'}, axis=1)
+prior_columns = df_prior_aic.columns
+df_prior = df_prior_bic.merge(df_prior_aic)
+
 df = pd.read_csv('./data/df_participants.csv')
 df_prior.index = df.index.to_list()
 df_participants = df.merge(df_prior) 
@@ -94,6 +99,9 @@ for experiment in experiments:
         # Prior bf
         part_prior_bf = df_prior[df_prior.pid == part].best_prior.to_list()[0]
         df_trials.loc[df_trials.pid == part, 'lc_prior_bf'] = 1 if part_prior_bf == 1 else 0
+
+        part_prior_bf_aic = df_prior_aic[df_prior_aic.pid == part].best_prior_aic.to_list()[0]
+        df_trials.loc[df_trials.pid == part, 'lc_prior_bf_aic'] = 1 if part_prior_bf_aic == 1 else 0
 
         part_data = df_final.loc[df_final.participant == part]
         norm_data = df_norm_CA.loc[df_norm_CA.participant == part]
@@ -144,6 +152,8 @@ for experiment in experiments:
 
     df_final['lc_prior_bf'] = 0
     df_final.loc[df_long.participant.isin(df_exp[df_exp.best_prior == 1].pid), 'lc_prior_bf'] = 1
+    df_final['lc_prior_bf_aic'] = 0
+    df_final.loc[df_long.participant.isin(df_exp[df_exp.best_prior_aic == 1].pid), 'lc_prior_bf_aic'] = 1
 
 
     df_final.to_csv(f'./data/accuracy_lf_exp{experiment}_wprior.csv', index=False)

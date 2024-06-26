@@ -1,0 +1,14 @@
+model_name,AIC group,Tau,Attention,Change memory,Tau Prior,CE threshold,Strength threshold,Guess,AIC ind.,Part best fit prev,Part best fit new
+Baseline,9348.0,,,,,,,,77.25,9,9
+normative,9169.0,6.375,,,,,,,69.17,16,14
+normative w. prior,9118.0,6.592,,,308.307,,,,68.97,3,3
+LC basic,8448.0,1.176,,,,,,,72.01,1,
+LC basic w. prior,8413.0,1.176,,,193.383,,,,71.26,2,2
+CEA basic,8613.0,,,,,0.565,,0.573,71.93,10,
+CEA strength sensitive,8490.0,,,,,0.561,42.0,0.556,72.3,15,19
+Temporal LC,8614.0,1.099,,,,,,,73.17,,
+Temporal LC w. prior,8459.0,1.179,,,506.997,,,,71.09,,2
+TF LC att.,7578.0,1.676,0.378,,,,,,63.11,46,
+TF LC att. w. prior,7472.0,1.679,0.448,,116.75,,,,62.63,19,
+TF LC,7598.0,1.673,,,,,,,64.39,,21
+TF LC w. prior,7482.0,1.675,,,203.755,,,,60.79,,51

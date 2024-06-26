@@ -43,6 +43,7 @@ pairs(em1)
 afex_plot(mod, "difficulty")
 
 # Secondary analysis model with prior shape
+# BIC
 mod = afex::mixed(accuracy ~ difficulty*scenario*lc_prior_bf + (1| participant), data=data_3, method='S')
 mod
 em1 = emmeans::emmeans(mod, 'difficulty', 'lc_prior_bf')
@@ -52,6 +53,18 @@ em1 = emmeans::emmeans(mod, 'scenario', 'lc_prior_bf')
 em1
 pairs(em1)
 afex_plot(mod, 'scenario', 'lc_prior_bf')
+
+# AIC
+
+mod = afex::mixed(accuracy ~ difficulty*scenario*lc_prior_bf_aic + (1| participant), data=data_3, method='S')
+mod
+em1 = emmeans::emmeans(mod, 'difficulty', 'lc_prior_bf_aic')
+em1
+pairs(em1)
+em1 = emmeans::emmeans(mod, 'scenario', 'lc_prior_bf_aic')
+em1
+pairs(em1)
+afex_plot(mod, 'difficulty', 'lc_prior_bf_aic')
 
 
 
@@ -71,6 +84,7 @@ pairs(em1)
 afex_plot(mod, "difficulty")
 
 # Secondary analysis model with prior shape
+# BIC
 
 mod = afex::mixed(accuracy ~ difficulty*scenario*lc_prior_bf + lc_score + (1| participant), data=data_4, method='S')
 mod
@@ -78,6 +92,15 @@ em1 = emmeans::emmeans(mod, 'difficulty', 'lc_prior_bf')
 em1
 pairs(em1)
 afex_plot(mod, "difficulty", 'lc_prior_bf')
+
+# AIC
+mod = afex::mixed(accuracy ~ difficulty*scenario*lc_prior_bf_aic + lc_score + (1| participant), data=data_4, method='S')
+mod
+em1 = emmeans::emmeans(mod, 'difficulty', 'lc_prior_bf_aic')
+em1
+pairs(em1)
+afex_plot(mod, "difficulty", 'lc_prior_bf_aic')
+
 
 # Analysis of indirect link errors in labeled trials for experiment 3 and 4
 df_trials = read.csv('./data/df_trials_wprior.csv')
@@ -104,3 +127,4 @@ em1 = emmeans::emmeans(mod, 'trial_type', 'lc_prior_bf')
 em1
 pairs(em1)
 afex_plot(mod, 'trial_type', 'lc_prior_bf')
+
