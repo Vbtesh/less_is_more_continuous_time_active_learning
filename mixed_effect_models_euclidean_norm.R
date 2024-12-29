@@ -11,6 +11,8 @@ data = read.csv('./data/experiment_1_rdata.csv')
 mod = lm(crime_acc ~ crime_priorTruth + mean_acc, data=data)
 summary(mod)
 
+# Mixed effect model looking at contribution of structure and polarity in accuracy
+
 # Experiment 2
 ## Analysis using accuracy from euclidean norm
 data_2 = read.csv('./data/accuracy_lf_exp2.csv')

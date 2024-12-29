@@ -42,7 +42,7 @@ parts = []
 failedList = []
 for exp_idx, experiment in enumerate(experiments):
     # Load raw experiment data files
-    with open(f'.\\data\\raw\\{experiment}_raw_data.json', 'r') as db:
+    with open(f'./data/raw/{experiment}_raw_data.json', 'r') as db:
         db_raw = json.load(db)
 
     exceptions = ['test_625034503']
@@ -52,8 +52,8 @@ for exp_idx, experiment in enumerate(experiments):
 
     # Deal with prolific metadata
     ## Add time taken to df from prolific export
-    if os.path.isfile(f'.\\data\\raw\\prolific_export_{experiment}.csv'):
-        prolific_export = pd.read_csv(f'.\\data\\raw\\prolific_export_{experiment}.csv')
+    if os.path.isfile(f'./data/raw/prolific_export_{experiment}.csv'):
+        prolific_export = pd.read_csv(f'./data/raw/prolific_export_{experiment}.csv')
         prolific_df = prolific_export[prolific_export.status == 'APPROVED']
         # Use Pid as index
         prolific_df.index = prolific_df.participant_id

@@ -1,4 +1,3 @@
-from cv2 import threshold
 import numpy as np
 from scipy import stats
 from methods.interventions import splitIdxArray
@@ -103,8 +102,8 @@ class Intervention():
         self.std_abs = np.std(self.values_abs)
         mode_abs_out = stats.mode(self.values_abs)
 
-        self.mode_abs = mode_abs_out[0][0]
-        self.mode_abs_len = mode_abs_out[1][0]
+        self.mode_abs = mode_abs_out[0]
+        self.mode_abs_len = mode_abs_out[1]        
         self.mode_abs_len_rel = self.mode_abs_len / self.length
         
         self.sign = self.values / self.values_abs
